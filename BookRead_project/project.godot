@@ -14,4 +14,21 @@ config/name="漫画阅读器"
 config/description="一款离线的漫画阅读APP"
 config/version="0.1"
 config/tags=PackedStringArray("git", "漫画阅读器")
+run/main_scene="res://场景/主场景.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="BookRead"
 config/features=PackedStringArray("4.3", "Forward Plus")
+boot_splash/bg_color=Color(1, 1, 1, 1)
+
+[display]
+
+window/size/viewport_width=540
+window/size/viewport_height=1200
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+window/handheld/orientation=1
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
