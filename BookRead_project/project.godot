@@ -1,0 +1,17 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="漫画阅读器"
+config/description="一款离线的漫画阅读APP"
+config/version="0.1"
+config/tags=PackedStringArray("git", "漫画阅读器")
+config/features=PackedStringArray("4.3", "Forward Plus")
