@@ -16,7 +16,7 @@ func 滑动(event: InputEvent) -> void:
 			drag = false  
   
 	if drag and event is InputEventMouseMotion:  
-		# 如果正在拖动，更新控件的位置  
+		# 如果正在拖动，更新控件的位置 
 		var new_pos = get_global_mouse_position()   
 		var delta = new_pos - drag_from
 		drag_from = new_pos

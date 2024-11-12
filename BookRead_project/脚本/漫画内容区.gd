@@ -12,7 +12,7 @@ var up_page:int
 func open_read():
 	set_visible(true)
 	var comic_size = Data.comic_array()[0].get_size()
-	comic_min = Vector2(0,(comic_size.y * 540)/comic_size.x)
+	comic_min = Vector2(0,(comic_size.y * 550)/comic_size.x)
 	if now_page <= 2:
 		up_page = 0			
 	else:
@@ -61,3 +61,10 @@ func 退出阅读() -> void:
 	$"具体菜单".set_visible(false)
 	set_visible(false)
 	pass 
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST and is_visible():
+		退出阅读()
+		pass
+
+	

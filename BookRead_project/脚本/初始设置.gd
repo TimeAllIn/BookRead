@@ -31,7 +31,9 @@ func _ready() -> void:
 			file_name = comic_dir.get_next()
 	else :	
 		print("无文件夹创建")
-		DirAccess.make_dir_absolute(Data.comic_path)
+		var dir = DirAccess.open(Data.comic_start_path)
+		dir.make_dir_recursive(Data.comic_path)
+		
 
 #返回文件名称,不含有后缀
 func back_file_name(file_name:String):

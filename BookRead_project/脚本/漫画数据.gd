@@ -57,25 +57,25 @@ func load_comic():
 		if book_key=="jpg":
 			var start_num:int = 1
 			#print("book("+str(start_num) + ")." +  book_key)
-			var book = reader.read_file("book("+str(start_num) + ")." +  book_key)
+			var book = reader.read_file("book("+str(start_num) + ")." + Data.comic_end_with)
 			while not book.is_empty():		
 				#print("book ("+str(start_num) + ")." +  book_key)
 				var book_image:Image = Image.new()
 				book_image.load_jpg_from_buffer(book)
 				Data.comic_name_to(comic_name).append(ImageTexture.create_from_image(book_image))				
 				start_num += 1
-				book = reader.read_file("book("+str(start_num) + ")." +  book_key)
+				book = reader.read_file("book("+str(start_num) + ")." + Data.comic_end_with)
 		elif book_key == "png":
 			var start_num:int = 1
 			#print("book("+str(start_num) + ")." +  book_key)
-			var book = reader.read_file("book("+str(start_num) + ")." +  book_key)
+			var book = reader.read_file("book("+str(start_num) + ")." + Data.comic_end_with)
 			while not book.is_empty():		
 				#print("book("+str(start_num) + ")." +  book_key)
 				var book_image:Image = Image.new()
 				book_image.load_png_from_buffer(book)
 				Data.comic_name_to(comic_name).append(ImageTexture.create_from_image(book_image))				
 				start_num += 1
-				book = reader.read_file("book("+str(start_num) + ")." +  book_key)
+				book = reader.read_file("book("+str(start_num) + ")." + Data.comic_end_with)
 	reader.close()
 	thread.wait_to_finish()
 	end_read = true
