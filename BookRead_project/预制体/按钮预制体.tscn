@@ -13,6 +13,7 @@ corner_detail = 20
 shadow_size = 10
 
 [node name="按钮预制体" type="Panel"]
+clip_children = 2
 anchors_preset = -1
 anchor_left = 0.185185
 anchor_top = 0.833333
@@ -25,6 +26,7 @@ script = ExtResource("1_q0tiu")
 metadata/_edit_use_anchors_ = true
 
 [node name="文本" type="Label" parent="."]
+clip_contents = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

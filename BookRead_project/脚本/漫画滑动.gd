@@ -2,6 +2,9 @@ extends Panel
 
 var drag
 var drag_from
+
+@export var move_scrool:ScrollContainer
+
 func 滑动(event: InputEvent) -> void:
 	if event is InputEventMouseButton:  
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:  
@@ -17,6 +20,6 @@ func 滑动(event: InputEvent) -> void:
 		var new_pos = get_global_mouse_position()   
 		var delta = new_pos - drag_from
 		drag_from = new_pos
-		$"../../容器".set_v_scroll($"../../容器".get_v_scroll() - int(delta.y))
+		move_scrool.set_v_scroll(move_scrool.get_v_scroll() - int(delta.y) * Data.speed)
 			
 	pass
