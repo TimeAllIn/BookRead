@@ -4,8 +4,6 @@ extends Panel
 @export var comic_min:Vector2
 @export var now_page:int
 
-var where_from
-
 func _ready() -> void:
 	Data.comic_show = self
 var up_page:int
@@ -57,6 +55,7 @@ func _physics_process(delta: float) -> void:
 func 退出阅读() -> void:
 	Data.now_look.now_page = now_page
 	now_page = 0
+	Data.comic_array().clear()
 	Data.now_look = null
 	$"具体菜单".set_visible(false)
 	set_visible(false)

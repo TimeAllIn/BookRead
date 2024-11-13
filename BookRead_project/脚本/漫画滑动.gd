@@ -1,9 +1,17 @@
 extends Panel
 
-var drag
+var drag = false
 var drag_from
-
 @export var move_scrool:ScrollContainer
+var move_delta:float = 0
+func _physics_process(delta: float) -> void:
+	if move_delta != 0 and not drag:
+		if abs(move_delta) <= 3:
+			move_delta = 0
+			return
+		move_delta = lerpf(0,move_delta,0.98)
+		move_scrool.set_v_scroll(move_scrool.get_v_scroll() - int(move_delta))
+	pass
 
 func 滑动(event: InputEvent) -> void:
 	if event is InputEventMouseButton:  
@@ -18,8 +26,8 @@ func 滑动(event: InputEvent) -> void:
 	if drag and event is InputEventMouseMotion:  
 		# 如果正在拖动，更新控件的位置 
 		var new_pos = get_global_mouse_position()   
-		var delta = new_pos - drag_from
+		move_delta = (new_pos - drag_from).y * Data.speed
 		drag_from = new_pos
-		move_scrool.set_v_scroll(move_scrool.get_v_scroll() - int(delta.y) * Data.speed)
+		move_scrool.set_v_scroll(move_scrool.get_v_scroll() - int(move_delta))
 			
 	pass

@@ -1,10 +1,13 @@
 extends Node
 
+
+#"/storage/emulated/0/"
 #漫画所在位置
-var comic_path:String = "user://bookread/comics"
+var comic_path:String = "BookRead/comics"
 
 #初始位置
 var comic_start_path:String = "user://"
+#var comic_start_path:String = "/storage/emulated/0/"
 
 #漫画后缀设置
 var comic_end_with:String = "BookRead"
@@ -13,12 +16,12 @@ var comic:Dictionary
 
 #漫画展示区
 var comic_show
-
+  
 #当前阅览的漫画
 var now_look
 
 #滑动速度
-var speed:float = 0.8
+var speed:float = 1
 
 func comic_array():
 	return comic.get(now_look.comic_name)

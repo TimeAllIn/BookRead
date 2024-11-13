@@ -3,7 +3,7 @@ const book = preload("res://预制体/漫画书目.tscn")
 func _ready() -> void:
 	OS.request_permissions()
 	#寻找书籍
-	var comic_dir = DirAccess.open(Data.comic_path)
+	var comic_dir = DirAccess.open(Data.comic_start_path+Data.comic_path)
 	if comic_dir :
 		print("打开成功")			
 		comic_dir.list_dir_begin()
@@ -32,7 +32,7 @@ func _ready() -> void:
 	else :	
 		print("无文件夹创建")
 		var dir = DirAccess.open(Data.comic_start_path)
-		dir.make_dir_recursive(Data.comic_path)
+		dir.make_dir_recursive(Data.comic_start_path + Data.comic_path)
 		
 
 #返回文件名称,不含有后缀
