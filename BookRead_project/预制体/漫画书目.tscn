@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnv4xs3rnq4h1"]
+[gd_scene load_steps=5 format=3 uid="uid://bnv4xs3rnq4h1"]
 
 [ext_resource type="PackedScene" uid="uid://co45py1fd5twf" path="res://预制体/按钮预制体.tscn" id="1_1pl0w"]
+[ext_resource type="Script" path="res://脚本/漫画数据.gd" id="1_fhnd7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f3moq"]
 bg_color = Color(1, 1, 1, 1)
@@ -13,41 +14,56 @@ border_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k6gwa"]
 resource_local_to_scene = true
 bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 corner_detail = 20
-shadow_size = 10
 
 [node name="漫画" type="Panel"]
-custom_minimum_size = Vector2(0, 200)
+custom_minimum_size = Vector2(0, 100)
 anchors_preset = -1
-anchor_right = 0.303704
-anchor_bottom = 0.166667
+anchor_right = 0.888889
+anchor_bottom = 0.0833333
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_f3moq")
-metadata/_edit_use_anchors_ = true
-
-[node name="封面" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.0609756
-anchor_top = 0.05
-anchor_right = 0.939024
-anchor_bottom = 0.95
-grow_horizontal = 2
-grow_vertical = 2
-expand_mode = 1
-stretch_mode = 5
+script = ExtResource("1_fhnd7")
 metadata/_edit_use_anchors_ = true
 
 [node name="按钮预制体" parent="." instance=ExtResource("1_1pl0w")]
 layout_mode = 1
-anchor_left = 0.182927
-anchor_top = 0.735
-anchor_right = 0.810976
+anchor_left = 0.770833
+anchor_top = 0.1
+anchor_right = 0.977083
 anchor_bottom = 0.89
+offset_right = 1.0
+offset_bottom = 1.0
 grow_horizontal = 1
 grow_vertical = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_k6gwa")
+
+[node name="文本" parent="按钮预制体" index="0"]
+text = "阅读"
+
+[node name="文本" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0208333
+anchor_right = 0.729167
+anchor_bottom = 1.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "name"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 3
+metadata/_edit_use_anchors_ = true
+
+[connection signal="button_down" from="按钮预制体" to="." method="按下按钮"]
+
+[editable path="按钮预制体"]
