@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://r8w6o2wsxxy6"]
+
+[ext_resource type="PackedScene" uid="uid://d3qh51kdxs5o" path="res://预制体/滑动条/滑动条.tscn" id="1_vobka"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="滑动条" parent="." instance=ExtResource("1_vobka")]
+layout_mode = 2
+anchor_left = 0.148148
+anchor_top = 0.125
+anchor_right = 0.981481
+anchor_bottom = 0.191667
+offset_right = 0.0
+offset_bottom = 0.0
+metadata/_edit_use_anchors_ = true
+
+[node name="滑动条2" parent="." instance=ExtResource("1_vobka")]
+layout_mode = 2
+anchor_left = 0.148148
+anchor_top = 0.258333
+anchor_right = 0.703704
+anchor_bottom = 0.291667
+offset_right = 0.0
+offset_bottom = 0.0
+metadata/_edit_use_anchors_ = true

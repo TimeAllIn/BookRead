@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bnv4xs3rnq4h1"]
+[gd_scene load_steps=3 format=3 uid="uid://cynsh28q4hqao"]
 
-[ext_resource type="Script" path="res://脚本/漫画数据.gd" id="1_fhnd7"]
+[ext_resource type="Script" path="res://脚本/漫画目录.gd" id="1_7rm3s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f3moq"]
 bg_color = Color(1, 1, 1, 1)
@@ -17,7 +17,7 @@ anchor_right = 0.888889
 anchor_bottom = 0.0833333
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_f3moq")
-script = ExtResource("1_fhnd7")
+script = ExtResource("1_7rm3s")
 metadata/_edit_use_anchors_ = true
 
 [node name="文本" type="Label" parent="."]
@@ -44,7 +44,6 @@ grow_horizontal = 2
 grow_vertical = 2
 flat = true
 
-[connection signal="button_down" from="按钮" to="." method="_on_按钮_button_down"]
 [connection signal="button_up" from="按钮" to="." method="_on_按钮_button_up"]
 [connection signal="gui_input" from="按钮" to="." method="滑动"]
 [connection signal="pressed" from="按钮" to="." method="按下按钮"]

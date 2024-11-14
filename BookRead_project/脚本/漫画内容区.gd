@@ -9,8 +9,15 @@ func _ready() -> void:
 var up_page:int
 func open_read():
 	set_visible(true)
-	var comic_size = Data.comic_array()[0].get_size()
-	comic_min = Vector2(0,(comic_size.y * 550)/comic_size.x)
+	var comic_size
+	for i in Data.comic_array():
+		if i != null:
+			comic_size = i.get_size()
+			break
+	comic_min = Vector2(0,(comic_size.y * 540)/comic_size.x)
+	page_update()
+	pass
+func page_update():
 	if now_page <= 2:
 		up_page = 0			
 	else:
@@ -23,7 +30,6 @@ func open_read():
 	$"容器".set_v_scroll(int(2 * comic_min.y))
 	if now_page <= 2:
 		$"容器".set_v_scroll(int(now_page * comic_min.y))
-	pass
 
 func _physics_process(delta: float) -> void:
 	if is_visible():
@@ -53,11 +59,13 @@ func _physics_process(delta: float) -> void:
 		now_page = up_page + 2
 		pass
 func 退出阅读() -> void:
+	
 	Data.now_look.now_page = now_page
 	now_page = 0
+	$"具体菜单".set_visible(false)
 	Data.comic_array().clear()
 	Data.now_look = null
-	$"具体菜单".set_visible(false)
+	
 	set_visible(false)
 	pass 
 

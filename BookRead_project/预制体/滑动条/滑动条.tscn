@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3qh51kdxs5o"]
+
+[ext_resource type="Script" path="res://预制体/滑动条/滑动条.gd" id="1_utwgu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dnwc5"]
+bg_color = Color(0.638661, 0.638661, 0.638661, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 400
+corner_radius_top_right = 400
+corner_radius_bottom_right = 400
+corner_radius_bottom_left = 400
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uxlxy"]
+bg_color = Color(0.894922, 0.894922, 0.894922, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 400
+corner_radius_top_right = 400
+corner_radius_bottom_right = 400
+corner_radius_bottom_left = 400
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hly33"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 400
+corner_radius_top_right = 400
+corner_radius_bottom_right = 400
+corner_radius_bottom_left = 400
+corner_detail = 20
+
+[node name="滑动条" type="Panel"]
+custom_minimum_size = Vector2(300, 40)
+offset_right = 300.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dnwc5")
+script = ExtResource("1_utwgu")
+metadata/_edit_use_anchors_ = true
+
+[node name="跟随条" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uxlxy")
+
+[node name="移动条" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.142857
+anchor_bottom = 1.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hly33")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="gui_input" from="移动条" to="." method="滑动"]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://dkgr8mih8npif"]
+[gd_scene load_steps=19 format=3 uid="uid://dkgr8mih8npif"]
 
 [ext_resource type="Script" path="res://脚本/初始设置.gd" id="1_4o3um"]
 [ext_resource type="Script" path="res://脚本/功能菜单.gd" id="1_5mwc6"]
 [ext_resource type="PackedScene" uid="uid://co45py1fd5twf" path="res://预制体/按钮预制体.tscn" id="1_yoxqt"]
 [ext_resource type="Script" path="res://脚本/漫画菜单.gd" id="5_1gfcr"]
 [ext_resource type="Script" path="res://脚本/漫画内容区.gd" id="5_goovc"]
+[ext_resource type="PackedScene" uid="uid://d3qh51kdxs5o" path="res://预制体/滑动条/滑动条.tscn" id="6_4mdbv"]
 [ext_resource type="Script" path="res://脚本/漫画滑动.gd" id="8_jcr68"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uep36"]
@@ -15,10 +16,10 @@ bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f3moq"]
 bg_color = Color(1, 1, 1, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
 border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cgab7"]
@@ -48,11 +49,39 @@ corner_detail = 20
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_asens"]
 bg_color = Color(1, 1, 1, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hh8g2"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yugr1"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3wvqn"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 45
+corner_radius_top_right = 45
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xfwtm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yugr1"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_omo8v"]
+resource_local_to_scene = true
+bg_color = Color(0, 0.481733, 0.78216, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 20
 
 [node name="背景" type="Panel"]
 anchors_preset = 15
@@ -83,10 +112,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_bl73k")
 [node name="漫画区" type="Panel" parent="分区界面/漫画区"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0425926
-anchor_top = 0.0166667
-anchor_right = 0.95
-anchor_bottom = 0.85
+anchor_left = 0.0185185
+anchor_top = 0.00833333
+anchor_right = 0.981481
+anchor_bottom = 0.991667
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_f3moq")
@@ -111,6 +140,51 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="触摸移动区域" type="Panel" parent="分区界面/漫画区/漫画区" node_paths=PackedStringArray("move_scrool")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.74898
+anchor_bottom = 1.0
+offset_bottom = -6.10352e-05
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_cgab7")
+script = ExtResource("8_jcr68")
+move_scrool = NodePath("../容器")
+metadata/_edit_use_anchors_ = true
+
+[node name="漫画目录" type="Panel" parent="分区界面/漫画区"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0185185
+anchor_top = 0.00833333
+anchor_right = 0.981481
+anchor_bottom = 0.991667
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_f3moq")
+metadata/_edit_use_anchors_ = true
+
+[node name="容器" type="ScrollContainer" parent="分区界面/漫画区/漫画目录"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -4.99994
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="目录" type="VBoxContainer" parent="分区界面/漫画区/漫画目录/容器"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="触摸移动区域" type="Panel" parent="分区界面/漫画区/漫画目录" node_paths=PackedStringArray("move_scrool")]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.74898
@@ -184,7 +258,7 @@ custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5vjot")
 
-[node name="漫画内容区" type="Panel" parent="."]
+[node name="漫画内容区(竖直)" type="Panel" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -192,10 +266,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(270, 600)
 theme_override_styles/panel = SubResource("StyleBoxFlat_asens")
 script = ExtResource("5_goovc")
 
-[node name="容器" type="ScrollContainer" parent="漫画内容区"]
+[node name="容器" type="ScrollContainer" parent="漫画内容区(竖直)"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -205,44 +280,44 @@ grow_vertical = 2
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="容器" type="VBoxContainer" parent="漫画内容区/容器"]
+[node name="容器" type="VBoxContainer" parent="漫画内容区(竖直)/容器"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = -1
 alignment = 1
 
-[node name="0" type="TextureRect" parent="漫画内容区/容器/容器"]
+[node name="0" type="TextureRect" parent="漫画内容区(竖直)/容器/容器"]
 layout_mode = 2
 size_flags_vertical = 3
 expand_mode = 1
 stretch_mode = 5
 
-[node name="1" type="TextureRect" parent="漫画内容区/容器/容器"]
+[node name="1" type="TextureRect" parent="漫画内容区(竖直)/容器/容器"]
 layout_mode = 2
 size_flags_vertical = 3
 expand_mode = 1
 stretch_mode = 5
 
-[node name="2" type="TextureRect" parent="漫画内容区/容器/容器"]
+[node name="2" type="TextureRect" parent="漫画内容区(竖直)/容器/容器"]
 layout_mode = 2
 size_flags_vertical = 3
 expand_mode = 1
 stretch_mode = 5
 
-[node name="3" type="TextureRect" parent="漫画内容区/容器/容器"]
+[node name="3" type="TextureRect" parent="漫画内容区(竖直)/容器/容器"]
 layout_mode = 2
 size_flags_vertical = 3
 expand_mode = 1
 stretch_mode = 5
 
-[node name="4" type="TextureRect" parent="漫画内容区/容器/容器"]
+[node name="4" type="TextureRect" parent="漫画内容区(竖直)/容器/容器"]
 layout_mode = 2
 size_flags_vertical = 3
 expand_mode = 1
 stretch_mode = 5
 
-[node name="功能" type="Control" parent="漫画内容区"]
+[node name="功能" type="Control" parent="漫画内容区(竖直)"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -250,29 +325,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="左侧滑动条" type="Panel" parent="漫画内容区/功能" node_paths=PackedStringArray("move_scrool")]
-visible = false
-layout_mode = 0
-anchor_right = 0.462963
-anchor_bottom = 1.0
-theme_override_styles/panel = SubResource("StyleBoxTexture_hh8g2")
-script = ExtResource("8_jcr68")
-move_scrool = NodePath("../../容器")
-metadata/_edit_use_anchors_ = true
-
-[node name="右侧滑动条" type="Panel" parent="漫画内容区/功能" node_paths=PackedStringArray("move_scrool")]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.537037
-anchor_right = 1.0
-anchor_bottom = 1.0
-theme_override_styles/panel = SubResource("StyleBoxTexture_cgab7")
-script = ExtResource("8_jcr68")
-move_scrool = NodePath("../../容器")
-metadata/_edit_use_anchors_ = true
-
-[node name="全区" type="Panel" parent="漫画内容区/功能" node_paths=PackedStringArray("move_scrool")]
+[node name="全区" type="Panel" parent="漫画内容区(竖直)/功能" node_paths=PackedStringArray("move_scrool", "show_object")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -282,8 +335,19 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_cgab7")
 script = ExtResource("8_jcr68")
 move_scrool = NodePath("../../容器")
+show_object = NodePath("../../具体菜单")
 
-[node name="具体菜单" type="Control" parent="漫画内容区"]
+[node name="按钮选项" type="Button" parent="漫画内容区(竖直)/功能/全区"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="具体菜单" type="Control" parent="漫画内容区(竖直)"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -292,18 +356,50 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="下方菜单" type="Panel" parent="漫画内容区/具体菜单"]
+[node name="下方菜单" type="Panel" parent="漫画内容区(竖直)/具体菜单"]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.875
+anchor_top = 0.816667
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_yugr1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_3wvqn")
 metadata/_edit_use_anchors_ = true
 
-[node name="顶部菜单" type="Panel" parent="漫画内容区/具体菜单"]
+[node name="亮度" parent="漫画内容区(竖直)/具体菜单/下方菜单" instance=ExtResource("6_4mdbv")]
+custom_minimum_size = Vector2(400, 40)
+layout_mode = 2
+anchor_left = 0.12963
+anchor_top = 0.136364
+anchor_right = 0.87037
+anchor_bottom = 0.318182
+offset_right = 0.0
+offset_bottom = 0.0
+value = 1.0
+
+[node name="页码" parent="漫画内容区(竖直)/具体菜单/下方菜单" instance=ExtResource("6_4mdbv")]
+custom_minimum_size = Vector2(400, 40)
+layout_mode = 2
+anchor_left = 0.12963
+anchor_top = 0.409091
+anchor_right = 0.87037
+anchor_bottom = 0.590909
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="返回" type="Panel" parent="漫画内容区(竖直)/具体菜单"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.0416667
+anchor_right = 1.0
+anchor_bottom = 0.816667
+offset_left = -1.52588e-05
+theme_override_styles/panel = SubResource("StyleBoxTexture_xfwtm")
+script = ExtResource("5_1gfcr")
+metadata/_edit_use_anchors_ = true
+
+[node name="顶部菜单" type="Panel" parent="漫画内容区(竖直)/具体菜单"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -312,34 +408,37 @@ grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yugr1")
 metadata/_edit_use_anchors_ = true
 
-[node name="退出" type="Button" parent="漫画内容区/具体菜单/顶部菜单"]
+[node name="退出" type="Button" parent="漫画内容区(竖直)/具体菜单/顶部菜单"]
 clip_contents = true
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.257407
 anchor_bottom = 1.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "退出"
+flat = true
 metadata/_edit_use_anchors_ = true
 
-[node name="菜单" type="Panel" parent="漫画内容区"]
-visible = false
+[node name="旋转" parent="漫画内容区(竖直)/具体菜单/顶部菜单" instance=ExtResource("1_yoxqt")]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.425926
-anchor_top = 0.0416667
-anchor_right = 0.574074
-anchor_bottom = 0.875
-offset_left = -1.52588e-05
-theme_override_styles/panel = SubResource("StyleBoxTexture_xfwtm")
-script = ExtResource("5_1gfcr")
-metadata/_edit_use_anchors_ = true
+anchor_left = 0.925926
+anchor_top = 0.2
+anchor_right = 0.981481
+anchor_bottom = 0.799999
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_omo8v")
 
 [connection signal="gui_input" from="分区界面/漫画区/漫画区/触摸移动区域" to="分区界面/漫画区/漫画区/触摸移动区域" method="滑动"]
+[connection signal="gui_input" from="分区界面/漫画区/漫画目录/触摸移动区域" to="分区界面/漫画区/漫画目录/触摸移动区域" method="滑动"]
 [connection signal="button_down" from="功能菜单/容器/漫画区" to="功能菜单" method="漫画按钮"]
 [connection signal="button_down" from="功能菜单/容器/设置区" to="功能菜单" method="添加按钮"]
 [connection signal="button_down" from="功能菜单/容器/个人区" to="功能菜单" method="个人按钮"]
-[connection signal="gui_input" from="漫画内容区/功能/左侧滑动条" to="漫画内容区/功能/左侧滑动条" method="滑动"]
-[connection signal="gui_input" from="漫画内容区/功能/右侧滑动条" to="漫画内容区/功能/右侧滑动条" method="滑动"]
-[connection signal="gui_input" from="漫画内容区/功能/全区" to="漫画内容区/功能/全区" method="滑动"]
-[connection signal="pressed" from="漫画内容区/具体菜单/顶部菜单/退出" to="漫画内容区" method="退出阅读"]
-[connection signal="gui_input" from="漫画内容区/菜单" to="漫画内容区/菜单" method="漫画菜单"]
+[connection signal="button_up" from="漫画内容区(竖直)/功能/全区/按钮选项" to="漫画内容区(竖直)/功能/全区" method="按钮抬起"]
+[connection signal="gui_input" from="漫画内容区(竖直)/功能/全区/按钮选项" to="漫画内容区(竖直)/功能/全区" method="滑动"]
+[connection signal="pressed" from="漫画内容区(竖直)/功能/全区/按钮选项" to="漫画内容区(竖直)/功能/全区" method="按钮按下"]
+[connection signal="visibility_changed" from="漫画内容区(竖直)/具体菜单" to="漫画内容区(竖直)/具体菜单/返回" method="菜单显示"]
+[connection signal="value_change" from="漫画内容区(竖直)/具体菜单/下方菜单/亮度" to="漫画内容区(竖直)/具体菜单/返回" method="亮度改变"]
+[connection signal="value_change" from="漫画内容区(竖直)/具体菜单/下方菜单/页码" to="漫画内容区(竖直)/具体菜单/返回" method="页码改变"]
+[connection signal="gui_input" from="漫画内容区(竖直)/具体菜单/返回" to="漫画内容区(竖直)/具体菜单/返回" method="漫画菜单"]
+[connection signal="pressed" from="漫画内容区(竖直)/具体菜单/顶部菜单/退出" to="漫画内容区(竖直)" method="退出阅读"]

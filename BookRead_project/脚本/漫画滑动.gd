@@ -2,6 +2,7 @@ extends Panel
 
 var drag = false
 var drag_from
+var is_move := false
 @export var move_scrool:ScrollContainer
 var move_delta:float = 0
 func _physics_process(delta: float) -> void:
@@ -27,7 +28,20 @@ func 滑动(event: InputEvent) -> void:
 		# 如果正在拖动，更新控件的位置 
 		var new_pos = get_global_mouse_position()   
 		move_delta = (new_pos - drag_from).y * Data.speed
+		if abs(move_delta) > 1:
+			is_move = true
 		drag_from = new_pos
 		move_scrool.set_v_scroll(move_scrool.get_v_scroll() - int(move_delta))
-			
+	pass
+@export var show_object:CanvasItem
+
+func 按钮按下() -> void:
+	if is_move:
+		return
+	show_object.set_visible(true)
+	pass
+
+
+func 按钮抬起() -> void:
+	is_move = false
 	pass
