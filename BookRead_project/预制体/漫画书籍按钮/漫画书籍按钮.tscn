@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://b733q5kwp4ugq"]
+[gd_scene load_steps=3 format=3 uid="uid://b733q5kwp4ugq"]
 
 [ext_resource type="Script" path="res://预制体/漫画书籍按钮/漫画书籍按钮.gd" id="1_8nowf"]
-[ext_resource type="Texture2D" uid="uid://byhbh5w7s42s0" path="res://素材/0004.jpg" id="2_qvaj8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f3moq"]
 bg_color = Color(1, 1, 1, 1)
@@ -25,7 +24,6 @@ anchor_left = 0.0208333
 anchor_top = 0.0833333
 anchor_right = 0.208333
 anchor_bottom = 0.916667
-texture = ExtResource("2_qvaj8")
 expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true

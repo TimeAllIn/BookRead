@@ -15,14 +15,19 @@ func 搜索提交(new_text: String) -> void:
 			return
 	my_array = get_parent().get_children()
 	my_array.erase(self)
-	
 	var temp_array:Array = Array(my_array)
 	test_string = new_text
 	temp_array.sort_custom(sort_ascending)
 	for i in range(temp_array.size()):
 		temp_array[i].get_parent().move_child(temp_array[i],i + 1)
 	pass
-
 var test_string:String
 func sort_ascending(a, b):
-	return not a.comic_name.similarity(test_string) < b.comic_name.similarity(test_string)
+	print(a.back_name() + str(a.back_name().similarity(test_string)))
+	print(b.back_name() + str(b.back_name().similarity(test_string)))
+	return not a.back_name().similarity(test_string) < b.back_name().similarity(test_string)
+
+
+func 输入框添加(new_text: String) -> void:
+	搜索提交(new_text)
+	pass # Replace with function body.

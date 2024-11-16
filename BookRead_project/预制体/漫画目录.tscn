@@ -1,14 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cynsh28q4hqao"]
+[gd_scene load_steps=4 format=3 uid="uid://cynsh28q4hqao"]
 
 [ext_resource type="Script" path="res://脚本/漫画目录.gd" id="1_7rm3s"]
+[ext_resource type="Texture2D" uid="uid://cw21n0ntc6bel" path="res://素材/文件夹.png" id="2_fltsj"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f3moq"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o17cm"]
 bg_color = Color(1, 1, 1, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0, 0, 0, 1)
 
 [node name="漫画" type="Panel"]
 custom_minimum_size = Vector2(0, 100)
@@ -16,23 +12,34 @@ anchors_preset = -1
 anchor_right = 0.888889
 anchor_bottom = 0.0833333
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_f3moq")
+theme_override_styles/panel = SubResource("StyleBoxFlat_o17cm")
 script = ExtResource("1_7rm3s")
+metadata/_edit_use_anchors_ = true
+
+[node name="纹理" type="TextureRect" parent="."]
+modulate = Color(1, 0.85098, 0.431373, 1)
+layout_mode = 0
+anchor_right = 0.1875
+anchor_bottom = 1.0
+texture = ExtResource("2_fltsj")
+expand_mode = 1
+stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
 [node name="文本" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_left = 0.1875
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "name"
-horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 text_overrun_behavior = 3
+metadata/_edit_use_anchors_ = true
 
 [node name="按钮" type="Button" parent="."]
 clip_contents = true
@@ -44,6 +51,7 @@ grow_horizontal = 2
 grow_vertical = 2
 flat = true
 
+[connection signal="button_down" from="按钮" to="." method="按下"]
 [connection signal="button_up" from="按钮" to="." method="_on_按钮_button_up"]
 [connection signal="gui_input" from="按钮" to="." method="滑动"]
 [connection signal="pressed" from="按钮" to="." method="按下按钮"]

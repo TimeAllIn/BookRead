@@ -150,19 +150,14 @@ func 封面设置():
 		var key = reader.read_file("key.br")
 		book_key = key.get_string_from_utf8()
 		if book_key=="jpg":
-			var book = reader.read_file("book("+str(start_num)+")." + Data.comic_end_with)
-			
-			
+			var book = reader.read_file("book("+str(start_num)+")." + Data.comic_end_with)		
 			book_image.load_jpg_from_buffer(book)
 			while book_image == null:
 				start_num += 1
 				book = reader.read_file("book("+str(start_num)+")." + Data.comic_end_with)
 				book_image.load_jpg_from_buffer(book)
-				
-			
 		elif book_key=="png":
 			var book = reader.read_file("book(1)." + Data.comic_end_with)
-
 			book_image.load_png_from_buffer(book)
 			while book_image == null:
 				start_num += 1
@@ -187,3 +182,6 @@ func _physics_process(delta: float) -> void:
 func 按下() -> void:
 	set_self_modulate(Color(0.8,0.8,0.8))
 	pass # Replace with function body.
+
+func back_name():
+	return comic_name

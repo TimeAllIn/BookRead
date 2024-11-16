@@ -1,7 +1,8 @@
 extends Panel
 
 @export var comic_name:String
-@export var now_page:int = 0
+
+
 
 var drag = false
 var drag_from
@@ -30,6 +31,7 @@ func 滑动(event: InputEvent) -> void:
 	pass
 func _on_按钮_button_up() -> void:
 	is_move = false
+	set_self_modulate(Color(1,1,1))
 	pass
 
 func 按下按钮() -> void:
@@ -58,3 +60,10 @@ func _physics_process(delta: float) -> void:
 		else :
 			Data.move_book_con.set_v_scroll(Data.move_book_con.get_v_scroll() - int(move_delta))
 	pass
+
+
+func 按下() -> void:
+	set_self_modulate(Color(0.8,0.8,0.8))
+	pass # Replace with function body.
+func back_name():
+	return "目录:"+comic_name

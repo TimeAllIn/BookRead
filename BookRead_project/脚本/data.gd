@@ -6,8 +6,8 @@ extends Node
 var comic_path:String = "BookRead/comics"
 
 #初始位置
-var comic_start_path:String = "user://"
-#var comic_start_path:String = "/storage/emulated/0/"
+#var comic_start_path:String = "user://"
+var comic_start_path:String = "/storage/emulated/0/"
 
 #漫画后缀设置
 var comic_end_with:String = "BookRead"
@@ -42,12 +42,13 @@ const book_con = preload("res://预制体/漫画目录.tscn")
 var type := 0
 var pathArray:Array[String]
 func open_dir(dir_name:String):
+	print(dir_name)
 	var comic_dir
 	if dir_name == pathArray[pathArray.size()-2]:
 		type -= 1
 		pathArray.remove_at(pathArray.size()-1)
 		comic_dir = DirAccess.open(pathArray[pathArray.size()-1])
-		print(pathArray[pathArray.size()-1])
+		#print(pathArray[pathArray.size()-1])
 		pass
 	else:
 		type += 1
