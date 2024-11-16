@@ -57,6 +57,7 @@ func 按下按钮() -> void:
 
 func set_head():
 	$"文本".set_text(comic_name)
+	
 
 func _physics_process(delta: float) -> void:
 	if start_read:

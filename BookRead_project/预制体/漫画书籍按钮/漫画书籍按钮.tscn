@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnv4xs3rnq4h1"]
+[gd_scene load_steps=4 format=3 uid="uid://b733q5kwp4ugq"]
 
-[ext_resource type="Script" path="res://脚本/漫画数据.gd" id="1_fhnd7"]
-[ext_resource type="Texture2D" uid="uid://byhbh5w7s42s0" path="res://素材/0004.jpg" id="2_hcndn"]
+[ext_resource type="Script" path="res://预制体/漫画书籍按钮/漫画书籍按钮.gd" id="1_8nowf"]
+[ext_resource type="Texture2D" uid="uid://byhbh5w7s42s0" path="res://素材/0004.jpg" id="2_qvaj8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f3moq"]
-bg_color = Color(1, 1, 1, 0)
+bg_color = Color(1, 1, 1, 1)
 border_color = Color(0, 0, 0, 1)
 
 [node name="漫画" type="Panel"]
@@ -15,7 +15,7 @@ anchor_bottom = 0.1
 offset_bottom = -20.0
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_f3moq")
-script = ExtResource("1_fhnd7")
+script = ExtResource("1_8nowf")
 metadata/_edit_use_anchors_ = true
 
 [node name="封面" type="TextureRect" parent="."]
@@ -25,12 +25,12 @@ anchor_left = 0.0208333
 anchor_top = 0.0833333
 anchor_right = 0.208333
 anchor_bottom = 0.916667
-texture = ExtResource("2_hcndn")
+texture = ExtResource("2_qvaj8")
 expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="文本" type="Label" parent="."]
+[node name="名称" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.208333
@@ -46,7 +46,7 @@ clip_text = true
 text_overrun_behavior = 3
 metadata/_edit_use_anchors_ = true
 
-[node name="文本2" type="Label" parent="."]
+[node name="页数" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.208333
@@ -72,7 +72,8 @@ grow_horizontal = 2
 grow_vertical = 2
 flat = true
 
-[connection signal="button_down" from="按钮" to="." method="_on_按钮_button_down"]
-[connection signal="button_up" from="按钮" to="." method="_on_按钮_button_up"]
+[connection signal="mouse_entered" from="." to="." method="按下"]
+[connection signal="button_down" from="按钮" to="." method="按下"]
+[connection signal="button_up" from="按钮" to="." method="按钮抬起"]
 [connection signal="gui_input" from="按钮" to="." method="滑动"]
 [connection signal="pressed" from="按钮" to="." method="按下按钮"]

@@ -36,7 +36,8 @@ func comic_name_to(comic_name):
 func comic_page():
 	return now_look.now_page
 
-const book = preload("res://预制体/漫画书目.tscn")
+#const book = preload("res://预制体/漫画书目.tscn")
+const book= preload("res://预制体/漫画书籍按钮/漫画书籍按钮.tscn")
 const book_con = preload("res://预制体/漫画目录.tscn")
 var type := 0
 var pathArray:Array[String]
@@ -52,22 +53,21 @@ func open_dir(dir_name:String):
 		type += 1
 		pathArray.append(pathArray[pathArray.size()-1] + "/" + dir_name)
 		comic_dir = DirAccess.open(pathArray[pathArray.size() - 1])
-		
 		print(pathArray[pathArray.size()-1] + "/" + dir_name)
 	if type == 0:
 		for i in move_book_con.get_child(0).get_children():
+			if i.name == "搜索":
+				continue
 			if i.comic_name != dir_name:
 				i.queue_free()
 		move_book_con.get_parent().set_visible(false)
 		return
-
 	if comic_dir :
 		for i in move_book_con.get_child(0).get_children():
+			if i.name == "搜索":
+				continue
 			if i.comic_name != dir_name:
 				i.queue_free()
-
-
-		
 		print("打开成功")	
 		comic_dir.list_dir_begin()
 		var file_name = comic_dir.get_next()
@@ -96,21 +96,14 @@ func open_dir(dir_name:String):
 				var temp_array:Array
 				comic[file_name] = temp_array	
 			file_name = comic_dir.get_next()
-		var add_book = book_con.instantiate()
-		
+		var add_book = book_con.instantiate()	
 		add_book.comic_name = pathArray[pathArray.size()-2]
-		
 		add_book.type = type
 		add_book.set_head()
 		move_book_con.get_child(0).add_child(add_book)
-		add_book.get_parent().move_child(add_book,0)
+		add_book.get_parent().move_child(add_book,1)
 		
 		move_book_con.get_parent().set_visible(true)
-
-func back_dir(dir_type:int):
-	
-	pass
-
 #返回文件名称,不含有后缀
 func back_file_name(file_name:String):
 	return file_name.rstrip("." + comic_end_with)

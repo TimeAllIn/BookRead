@@ -39,7 +39,7 @@ func 按下按钮() -> void:
 	if type != 0:
 		queue_free()
 	else:
-		get_parent().move_child(self,0)
+		get_parent().move_child(self,1)
 	pass
 
 

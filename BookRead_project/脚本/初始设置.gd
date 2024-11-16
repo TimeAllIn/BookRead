@@ -1,5 +1,6 @@
 extends Panel
-const book = preload("res://预制体/漫画书目.tscn")
+#const book = preload("res://预制体/漫画书目.tscn")
+const book = preload("res://预制体/漫画书籍按钮/漫画书籍按钮.tscn")
 const book_con = preload("res://预制体/漫画目录.tscn")
 func _ready() -> void:
 	OS.request_permissions()
@@ -30,7 +31,6 @@ func _ready() -> void:
 				add_book.comic_name = file_name
 				add_book.set_head()
 				$"分区界面/漫画区/漫画区/容器/容器".add_child(add_book)
-				
 				#全局变量储存
 				var temp_array:Array
 				Data.comic[file_name] = temp_array
@@ -43,7 +43,6 @@ func _ready() -> void:
 	
 	Data.move_book = $"分区界面/漫画区/漫画区/容器"
 	Data.move_book_con = $"分区界面/漫画区/漫画目录/容器"
-
 #返回文件名称,不含有后缀
 func back_file_name(file_name:String):
 	return file_name.rstrip("." + Data.comic_end_with)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://dkgr8mih8npif"]
+[gd_scene load_steps=23 format=3 uid="uid://dkgr8mih8npif"]
 
 [ext_resource type="Script" path="res://脚本/初始设置.gd" id="1_4o3um"]
 [ext_resource type="Script" path="res://脚本/功能菜单.gd" id="1_5mwc6"]
 [ext_resource type="PackedScene" uid="uid://co45py1fd5twf" path="res://预制体/按钮预制体.tscn" id="1_yoxqt"]
+[ext_resource type="Script" path="res://脚本/顶部设置.gd" id="2_py2jl"]
 [ext_resource type="Script" path="res://脚本/漫画菜单.gd" id="5_1gfcr"]
 [ext_resource type="Script" path="res://脚本/漫画内容区.gd" id="5_goovc"]
 [ext_resource type="PackedScene" uid="uid://d3qh51kdxs5o" path="res://预制体/滑动条/滑动条.tscn" id="6_4mdbv"]
@@ -14,37 +15,29 @@ bg_color = Color(1, 1, 1, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bl73k"]
 bg_color = Color(1, 1, 1, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f3moq"]
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0, 0, 0, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v6vn4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tmmoq"]
+bg_color = Color(8.08597e-06, 0.754719, 0.949882, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mpqrb"]
+bg_color = Color(1, 1, 1, 0.75)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cgab7"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_61ea2"]
-bg_color = Color(7.31587e-06, 0.593117, 0.955887, 1)
-corner_radius_top_left = 50
-corner_radius_top_right = 50
-corner_radius_bottom_right = 50
-corner_radius_bottom_left = 50
-corner_detail = 20
-shadow_size = 10
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c8fh2"]
+bg_color = Color(1, 1, 1, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vjot"]
-bg_color = Color(0.918357, 0.499684, 0.366367, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 50
-corner_radius_top_right = 50
-corner_radius_bottom_right = 50
-corner_radius_bottom_left = 50
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yl1w1"]
+bg_color = Color(1, 1, 1, 1)
 corner_detail = 20
+shadow_size = 5
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7o7dc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_asens"]
 bg_color = Color(1, 1, 1, 1)
@@ -105,6 +98,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -70.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bl73k")
@@ -118,26 +112,87 @@ anchor_right = 0.981481
 anchor_bottom = 0.991667
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_f3moq")
+theme_override_styles/panel = SubResource("StyleBoxTexture_v6vn4")
 metadata/_edit_use_anchors_ = true
 
 [node name="容器" type="ScrollContainer" parent="分区界面/漫画区/漫画区"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = 5.0
-offset_right = -5.0
-offset_bottom = -4.99994
+anchors_preset = -1
+anchor_left = -0.0192308
+anchor_top = -0.00809959
+anchor_right = 1.01923
+anchor_bottom = 1.00885
 grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
+metadata/_edit_use_anchors_ = true
 
 [node name="容器" type="VBoxContainer" parent="分区界面/漫画区/漫画区/容器"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="顶部设置" type="Panel" parent="分区界面/漫画区/漫画区/容器/容器"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tmmoq")
+script = ExtResource("2_py2jl")
+
+[node name="容器" type="HBoxContainer" parent="分区界面/漫画区/漫画区/容器/容器/顶部设置"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="详细" type="Panel" parent="分区界面/漫画区/漫画区/容器/容器/顶部设置/容器"]
+custom_minimum_size = Vector2(100, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_tmmoq")
+
+[node name="搜索" type="Panel" parent="分区界面/漫画区/漫画区/容器/容器/顶部设置/容器"]
+custom_minimum_size = Vector2(435, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 20.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tmmoq")
+
+[node name="底部" type="Panel" parent="分区界面/漫画区/漫画区/容器/容器/顶部设置/容器/搜索"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0229885
+anchor_top = 0.142857
+anchor_right = 0.986207
+anchor_bottom = 0.857143
+theme_override_styles/panel = SubResource("StyleBoxFlat_mpqrb")
+metadata/_edit_use_anchors_ = true
+
+[node name="图标" type="TextureRect" parent="分区界面/漫画区/漫画区/容器/容器/顶部设置/容器/搜索/底部"]
+layout_mode = 0
+anchor_right = 0.119332
+anchor_bottom = 1.0
+metadata/_edit_use_anchors_ = true
+
+[node name="输入框" type="LineEdit" parent="分区界面/漫画区/漫画区/容器/容器/顶部设置/容器/搜索/底部"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.119332
+anchor_right = 0.954654
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/selection_color = Color(0, 0, 0, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(1, 1, 1, 1)
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+placeholder_text = "搜索漫画名"
+flat = true
+metadata/_edit_use_anchors_ = true
 
 [node name="触摸移动区域" type="Panel" parent="分区界面/漫画区/漫画区" node_paths=PackedStringArray("move_scrool")]
 visible = false
@@ -155,25 +210,18 @@ metadata/_edit_use_anchors_ = true
 [node name="漫画目录" type="Panel" parent="分区界面/漫画区"]
 visible = false
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.0185185
-anchor_top = 0.00833333
-anchor_right = 0.981481
-anchor_bottom = 0.991667
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_f3moq")
-metadata/_edit_use_anchors_ = true
+theme_override_styles/panel = SubResource("StyleBoxFlat_c8fh2")
 
 [node name="容器" type="ScrollContainer" parent="分区界面/漫画区/漫画目录"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = 5.0
-offset_right = -5.0
-offset_bottom = -4.99994
 grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 0
@@ -183,17 +231,65 @@ vertical_scroll_mode = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="触摸移动区域" type="Panel" parent="分区界面/漫画区/漫画目录" node_paths=PackedStringArray("move_scrool")]
-visible = false
+[node name="搜索" type="Panel" parent="分区界面/漫画区/漫画目录/容器/目录"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tmmoq")
+
+[node name="容器" type="HBoxContainer" parent="分区界面/漫画区/漫画目录/容器/目录/搜索"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="详细" type="Panel" parent="分区界面/漫画区/漫画目录/容器/目录/搜索/容器"]
+custom_minimum_size = Vector2(100, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_tmmoq")
+
+[node name="搜索" type="Panel" parent="分区界面/漫画区/漫画目录/容器/目录/搜索/容器"]
+custom_minimum_size = Vector2(435, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 20.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tmmoq")
+
+[node name="底部" type="Panel" parent="分区界面/漫画区/漫画目录/容器/目录/搜索/容器/搜索"]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.74898
+anchor_left = 0.0229885
+anchor_top = 0.142857
+anchor_right = 0.986207
+anchor_bottom = 0.857143
+theme_override_styles/panel = SubResource("StyleBoxFlat_mpqrb")
+metadata/_edit_use_anchors_ = true
+
+[node name="图标" type="TextureRect" parent="分区界面/漫画区/漫画目录/容器/目录/搜索/容器/搜索/底部"]
+layout_mode = 0
+anchor_right = 0.119332
 anchor_bottom = 1.0
-offset_bottom = -6.10352e-05
+metadata/_edit_use_anchors_ = true
+
+[node name="输入框" type="LineEdit" parent="分区界面/漫画区/漫画目录/容器/目录/搜索/容器/搜索/底部"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.119332
+anchor_right = 0.954654
+anchor_bottom = 1.0
+grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_cgab7")
-script = ExtResource("8_jcr68")
-move_scrool = NodePath("../容器")
+theme_override_colors/selection_color = Color(0, 0, 0, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(1, 1, 1, 1)
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+placeholder_text = "搜索漫画名"
+flat = true
 metadata/_edit_use_anchors_ = true
 
 [node name="设置区" type="Panel" parent="分区界面"]
@@ -219,15 +315,12 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_bl73k")
 [node name="功能菜单" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.185185
-anchor_top = 0.833333
-anchor_right = 0.814815
-anchor_bottom = 0.916667
-offset_top = 50.0
-offset_bottom = 50.0
+anchor_top = 0.941667
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_61ea2")
+theme_override_styles/panel = SubResource("StyleBoxFlat_yl1w1")
 script = ExtResource("1_5mwc6")
 metadata/_edit_use_anchors_ = true
 
@@ -236,27 +329,33 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 10.0
-offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 20
 alignment = 1
 
 [node name="漫画区" parent="功能菜单/容器" instance=ExtResource("1_yoxqt")]
-custom_minimum_size = Vector2(80, 0)
+custom_minimum_size = Vector2(170, 60)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5vjot")
+theme_override_styles/panel = SubResource("StyleBoxTexture_7o7dc")
+
+[node name="文本" parent="功能菜单/容器/漫画区" index="0"]
+text = "阅读"
 
 [node name="设置区" parent="功能菜单/容器" instance=ExtResource("1_yoxqt")]
-custom_minimum_size = Vector2(80, 0)
+custom_minimum_size = Vector2(170, 60)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5vjot")
+theme_override_styles/panel = SubResource("StyleBoxTexture_7o7dc")
+
+[node name="文本" parent="功能菜单/容器/设置区" index="0"]
+text = "设置"
 
 [node name="个人区" parent="功能菜单/容器" instance=ExtResource("1_yoxqt")]
-custom_minimum_size = Vector2(80, 0)
+custom_minimum_size = Vector2(170, 60)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5vjot")
+theme_override_styles/panel = SubResource("StyleBoxTexture_7o7dc")
+
+[node name="文本" parent="功能菜单/容器/个人区" index="0"]
+text = "我"
 
 [node name="漫画内容区(竖直)" type="Panel" parent="."]
 visible = false
@@ -429,8 +528,8 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_omo8v")
 
+[connection signal="text_submitted" from="分区界面/漫画区/漫画区/容器/容器/顶部设置/容器/搜索/底部/输入框" to="分区界面/漫画区/漫画区/容器/容器/顶部设置" method="搜索提交"]
 [connection signal="gui_input" from="分区界面/漫画区/漫画区/触摸移动区域" to="分区界面/漫画区/漫画区/触摸移动区域" method="滑动"]
-[connection signal="gui_input" from="分区界面/漫画区/漫画目录/触摸移动区域" to="分区界面/漫画区/漫画目录/触摸移动区域" method="滑动"]
 [connection signal="button_down" from="功能菜单/容器/漫画区" to="功能菜单" method="漫画按钮"]
 [connection signal="button_down" from="功能菜单/容器/设置区" to="功能菜单" method="添加按钮"]
 [connection signal="button_down" from="功能菜单/容器/个人区" to="功能菜单" method="个人按钮"]
@@ -442,3 +541,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_omo8v")
 [connection signal="value_change" from="漫画内容区(竖直)/具体菜单/下方菜单/页码" to="漫画内容区(竖直)/具体菜单/返回" method="页码改变"]
 [connection signal="gui_input" from="漫画内容区(竖直)/具体菜单/返回" to="漫画内容区(竖直)/具体菜单/返回" method="漫画菜单"]
 [connection signal="pressed" from="漫画内容区(竖直)/具体菜单/顶部菜单/退出" to="漫画内容区(竖直)" method="退出阅读"]
+
+[editable path="功能菜单/容器/漫画区"]
+[editable path="功能菜单/容器/设置区"]
+[editable path="功能菜单/容器/个人区"]
