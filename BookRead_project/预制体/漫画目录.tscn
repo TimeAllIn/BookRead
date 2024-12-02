@@ -18,8 +18,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="纹理" type="TextureRect" parent="."]
 modulate = Color(1, 0.85098, 0.431373, 1)
-layout_mode = 0
-anchor_right = 0.1875
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.208333
 anchor_bottom = 1.0
 texture = ExtResource("2_fltsj")
 expand_mode = 1
@@ -29,7 +30,7 @@ metadata/_edit_use_anchors_ = true
 [node name="文本" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.1875
+anchor_left = 0.208333
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2

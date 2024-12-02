@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dkgr8mih8npif"]
+[gd_scene load_steps=31 format=3 uid="uid://dkgr8mih8npif"]
 
 [ext_resource type="Script" path="res://脚本/初始设置.gd" id="1_4o3um"]
 [ext_resource type="Script" path="res://脚本/功能菜单.gd" id="1_5mwc6"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cx3xi2b1c6vc" path="res://素材/搜索.png" id="3_8qs7j"]
 [ext_resource type="Script" path="res://脚本/设置区.gd" id="4_tpkam"]
 [ext_resource type="Script" path="res://脚本/漫画菜单.gd" id="5_1gfcr"]
+[ext_resource type="Script" path="res://脚本/服务选择.gd" id="5_8bvwe"]
 [ext_resource type="Script" path="res://脚本/漫画内容区.gd" id="5_goovc"]
 [ext_resource type="PackedScene" uid="uid://d3qh51kdxs5o" path="res://预制体/滑动条/滑动条.tscn" id="6_4mdbv"]
 [ext_resource type="Texture2D" uid="uid://ce4npnr8e708m" path="res://素材/书籍.png" id="7_i7bm6"]
@@ -20,6 +21,12 @@ bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bl73k"]
 bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+border_blend = true
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v6vn4"]
 
@@ -36,12 +43,28 @@ corner_radius_bottom_left = 40
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c8fh2"]
 bg_color = Color(1, 1, 1, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tb8pl"]
+resource_local_to_scene = true
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 20
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yl1w1"]
 bg_color = Color(1, 1, 1, 1)
 corner_detail = 20
 shadow_size = 5
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7o7dc"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y8idx"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_asens"]
 bg_color = Color(1, 1, 1, 1)
@@ -90,6 +113,18 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_uep36")
 script = ExtResource("1_4o3um")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "这是一封情书，或写给自己"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="分区界面" type="Control" parent="."]
 layout_mode = 1
@@ -305,9 +340,88 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bl73k")
+
+[node name="服务选择" type="Panel" parent="分区界面/设置区"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0185185
+anchor_top = 0.00884955
+anchor_right = 0.97963
+anchor_bottom = 0.159292
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bl73k")
+script = ExtResource("5_8bvwe")
+metadata/_edit_use_anchors_ = true
+
+[node name="服务选择" type="Panel" parent="分区界面/设置区/服务选择"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0192678
+anchor_top = 0.0588235
+anchor_right = 0.980732
+anchor_bottom = 0.388235
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bl73k")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_group_ = true
+
+[node name="输入" type="LineEdit" parent="分区界面/设置区/服务选择/服务选择"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/selection_color = Color(0, 0, 0, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.456852, 0.456852, 0.456852, 1)
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+placeholder_text = "IP"
+alignment = 1
+flat = true
+
+[node name="链接" parent="分区界面/设置区/服务选择" instance=ExtResource("1_yoxqt")]
+layout_mode = 1
+anchor_left = 0.346821
+anchor_top = 0.588235
+anchor_right = 0.674374
+anchor_bottom = 0.894118
+offset_bottom = 1.52588e-05
+grow_horizontal = 1
+grow_vertical = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_tb8pl")
+
+[node name="文本" parent="分区界面/设置区/服务选择/链接" index="0"]
+text = "连接"
+
+[node name="内容" type="Panel" parent="分区界面/设置区"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0222222
+anchor_top = 0.168142
+anchor_right = 0.983333
+anchor_bottom = 0.982301
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bl73k")
+metadata/_edit_use_anchors_ = true
+
+[node name="个人区" type="Panel" parent="分区界面"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bl73k")
 script = ExtResource("4_tpkam")
 
-[node name="版本" type="Label" parent="分区界面/设置区"]
+[node name="版本" type="Label" parent="分区界面/个人区"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.979646
@@ -320,16 +434,6 @@ text = "版本号:"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
-
-[node name="个人区" type="Panel" parent="分区界面"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_bl73k")
 
 [node name="功能菜单" type="Panel" parent="."]
 layout_mode = 1
@@ -355,9 +459,24 @@ alignment = 1
 
 [node name="漫画区" parent="功能菜单/容器" instance=ExtResource("1_yoxqt")]
 modulate = Color(0, 0, 0, 1)
+clip_children = 0
+clip_contents = true
 custom_minimum_size = Vector2(170, 60)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_7o7dc")
+theme_override_styles/panel = SubResource("StyleBoxFlat_y8idx")
+
+[node name="文本" parent="功能菜单/容器/漫画区" index="0"]
+anchors_preset = -1
+anchor_top = 0.666667
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "阅读"
+metadata/_edit_use_anchors_ = true
+
+[node name="按钮" parent="功能菜单/容器/漫画区" index="1"]
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = 1.0
 
 [node name="纹理" type="TextureRect" parent="功能菜单/容器/漫画区"]
 layout_mode = 1
@@ -372,20 +491,28 @@ expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="文本" parent="功能菜单/容器/漫画区" index="1"]
+[node name="设置区" parent="功能菜单/容器" instance=ExtResource("1_yoxqt")]
+modulate = Color(0, 0, 0, 1)
+clip_contents = true
+custom_minimum_size = Vector2(170, 60)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y8idx")
+
+[node name="文本" parent="功能菜单/容器/设置区" index="0"]
 anchors_preset = -1
 anchor_top = 0.666667
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "阅读"
+text = "服务器"
 metadata/_edit_use_anchors_ = true
 
-[node name="设置区" parent="功能菜单/容器" instance=ExtResource("1_yoxqt")]
-modulate = Color(0, 0, 0, 1)
-custom_minimum_size = Vector2(170, 60)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_7o7dc")
+[node name="按钮" parent="功能菜单/容器/设置区" index="1"]
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = 1.0
 
 [node name="纹理" type="TextureRect" parent="功能菜单/容器/设置区"]
+clip_contents = true
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -398,18 +525,25 @@ expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="文本" parent="功能菜单/容器/设置区" index="1"]
+[node name="个人区" parent="功能菜单/容器" instance=ExtResource("1_yoxqt")]
+modulate = Color(0, 0, 0, 1)
+clip_contents = true
+custom_minimum_size = Vector2(170, 60)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y8idx")
+
+[node name="文本" parent="功能菜单/容器/个人区" index="0"]
 anchors_preset = -1
 anchor_top = 0.666667
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "设置"
+text = "我"
 metadata/_edit_use_anchors_ = true
 
-[node name="个人区" parent="功能菜单/容器" instance=ExtResource("1_yoxqt")]
-modulate = Color(0, 0, 0, 1)
-custom_minimum_size = Vector2(170, 60)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_7o7dc")
+[node name="按钮" parent="功能菜单/容器/个人区" index="1"]
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = 1.0
 
 [node name="纹理" type="TextureRect" parent="功能菜单/容器/个人区"]
 layout_mode = 1
@@ -422,13 +556,6 @@ mouse_filter = 2
 texture = ExtResource("9_6j1en")
 expand_mode = 1
 stretch_mode = 5
-metadata/_edit_use_anchors_ = true
-
-[node name="文本" parent="功能菜单/容器/个人区" index="1"]
-anchors_preset = -1
-anchor_top = 0.666667
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "我"
 metadata/_edit_use_anchors_ = true
 
 [node name="漫画内容区(竖直)" type="Panel" parent="."]
@@ -616,6 +743,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_omo8v")
 [connection signal="gui_input" from="漫画内容区(竖直)/具体菜单/返回" to="漫画内容区(竖直)/具体菜单/返回" method="漫画菜单"]
 [connection signal="pressed" from="漫画内容区(竖直)/具体菜单/顶部菜单/退出" to="漫画内容区(竖直)" method="退出阅读"]
 
+[editable path="分区界面/设置区/服务选择/链接"]
 [editable path="功能菜单/容器/漫画区"]
 [editable path="功能菜单/容器/设置区"]
 [editable path="功能菜单/容器/个人区"]

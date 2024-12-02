@@ -1,9 +1,26 @@
 extends Panel
-#const book = preload("res://预制体/漫画书目.tscn")
+#预制体加载
 const book = preload("res://预制体/漫画书籍按钮/漫画书籍按钮.tscn")
 const book_con = preload("res://预制体/漫画目录.tscn")
 func _ready() -> void:
+	#初始权限获取
 	OS.request_permissions()
+	#设备名称获取
+	match OS.get_name():
+		"Windows":
+			print("Welcome to Windows!")
+			Data.comic_start_path = "user://"
+		"Android":
+			print("Welcome to Android!")
+			Data.comic_start_path = "/storage/emulated/0/"
+	
+	var load_config = ConfigFile.new()
+	if load_config.load(Data.comic_start_path + "BookRead/config.ini")==OK:
+		Data.comic = load_config.get_value("BookRead","comic")
+		print("有存档")
+	else:
+		print("没有存档")
+	
 	#寻找书籍
 	var comic_dir = DirAccess.open(Data.comic_start_path+Data.comic_path)
 	if comic_dir :
@@ -29,18 +46,19 @@ func _ready() -> void:
 				var add_book = book.instantiate()
 				#书籍名称归档
 				add_book.comic_name = file_name
+				if not Data.comic.has(file_name):
+					Data.comic[file_name] = 0
+				else :
+					add_book.now_page =  Data.comic.get(file_name)
 				add_book.set_head()
 				$"分区界面/漫画区/漫画区/容器/容器".add_child(add_book)
-				#全局变量储存
-				var temp_array:Array
-				Data.comic[file_name] = temp_array
-				
+
 			file_name = comic_dir.get_next()
 	else :	
 		print("无文件夹创建")
 		var dir = DirAccess.open(Data.comic_start_path)
 		dir.make_dir_recursive(Data.comic_start_path + Data.comic_path)
-	
+
 	Data.move_book = $"分区界面/漫画区/漫画区/容器"
 	Data.move_book_con = $"分区界面/漫画区/漫画目录/容器"
 #返回文件名称,不含有后缀

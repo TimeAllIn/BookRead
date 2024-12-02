@@ -6,7 +6,7 @@
 bg_color = Color(1, 1, 1, 1)
 border_color = Color(0, 0, 0, 1)
 
-[node name="漫画" type="Panel"]
+[node name="漫画" type="Panel" groups=["漫画"]]
 custom_minimum_size = Vector2(0, 120)
 anchors_preset = -1
 anchor_right = 0.888889
@@ -71,6 +71,7 @@ grow_vertical = 2
 flat = true
 
 [connection signal="mouse_entered" from="." to="." method="按下"]
+[connection signal="tree_exited" from="." to="." method="删除"]
 [connection signal="button_down" from="按钮" to="." method="按下"]
 [connection signal="button_up" from="按钮" to="." method="按钮抬起"]
 [connection signal="gui_input" from="按钮" to="." method="滑动"]

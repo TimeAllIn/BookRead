@@ -1,4 +1,4 @@
 extends Resource
 class_name save_data
 
-@export var comic:Array
+@export var comic:Dictionary

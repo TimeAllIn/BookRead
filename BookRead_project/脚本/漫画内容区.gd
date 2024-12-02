@@ -10,7 +10,7 @@ var up_page:int
 func open_read():
 	set_visible(true)
 	var comic_size
-	for i in Data.comic_array():
+	for i in Data.comic_array:
 		if i != null:
 			comic_size = i.get_size()
 			break
@@ -23,9 +23,9 @@ func page_update():
 	else:
 		up_page = now_page - 2	
 	for i in $"容器/容器".get_child_count():
-		if up_page + i >= Data.comic_array().size():
+		if up_page + i >= Data.comic_array.size():
 			break
-		$"容器/容器".get_child(i).set_texture(Data.comic_array()[up_page + i])
+		$"容器/容器".get_child(i).set_texture(Data.comic_array[up_page + i])
 		$"容器/容器".get_child(i).set_custom_minimum_size(comic_min)
 	$"容器".set_v_scroll(int(2 * comic_min.y))
 	if now_page <= 2:
@@ -40,30 +40,37 @@ func _physics_process(delta: float) -> void:
 				$"容器".set_v_scroll(int(2 * comic_min.y))
 				up_page -= 1
 				for i in $"容器/容器".get_child_count():
-					if up_page + i >= Data.comic_array().size():
+					if up_page + i >= Data.comic_array.size():
 						break
-					$"容器/容器".get_child(i).set_texture(Data.comic_array()[up_page + i])					
+					$"容器/容器".get_child(i).set_texture(Data.comic_array[up_page + i])					
 				pass	
 			pass
 		elif $"容器".get_v_scroll() > int(3 * comic_min.y):
-			if up_page == Data.comic_array().size() - 5:
+			if up_page == Data.comic_array.size() - 5:
 				return
 			else:
 				$"容器".set_v_scroll(int(2 * comic_min.y))
 				up_page += 1
 				for i in $"容器/容器".get_child_count():
-					if up_page + i >= Data.comic_array().size():
+					if up_page + i >= Data.comic_array.size():
 						break
-					$"容器/容器".get_child(i).set_texture(Data.comic_array()[up_page + i])
+					$"容器/容器".get_child(i).set_texture(Data.comic_array[up_page + i])
 				pass
 		now_page = up_page + 2
 		pass
 func 退出阅读() -> void:
 	
 	Data.now_look.now_page = now_page
+	Data.comic[Data.now_look.comic_name] = now_page
+		
+	var save_conifig = ConfigFile.new()
+	save_conifig.set_value("BookRead","comic",Data.comic)
+	save_conifig.save(Data.comic_start_path + "BookRead/config.ini")
+	
+	Data.now_look.kill_bool = true
 	now_page = 0
 	$"具体菜单".set_visible(false)
-	Data.comic_array().clear()
+	Data.comic_array.clear()
 	Data.now_look = null
 	
 	set_visible(false)

@@ -15,12 +15,12 @@ func 亮度改变(value: float) -> void:
 	pass
 
 func 菜单显示() -> void:
-	var temp_value = float($"../..".now_page)/float(Data.comic_array().size() - 3)
+	var temp_value = float($"../..".now_page)/float(Data.comic_array.size() - 3)
 	$"../下方菜单/页码".set_value(temp_value)
 	pass
 
 
 func 页码改变(value: float) -> void:
-	$"../..".now_page = int((float(Data.comic_array().size())-2.5) * value)
+	$"../..".now_page = int((float(Data.comic_array.size())-2.5) * value)
 	$"../..".page_update()
 	pass

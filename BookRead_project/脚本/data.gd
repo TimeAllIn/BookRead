@@ -6,14 +6,15 @@ extends Node
 var comic_path:String = "BookRead/comics"
 
 #初始位置
-#var comic_start_path:String = "user://"
-var comic_start_path:String = "/storage/emulated/0/"
+var comic_start_path:String = "user://"
+#var comic_start_path:String = "/storage/emulated/0/"
 
 #漫画后缀设置
 var comic_end_with:String = "BookRead"
-#漫画字典Key:漫画名称	Value:漫画数组
+#漫画字典Key:漫画名称	Value:漫画页数
 var comic:Dictionary
-
+#漫画数据
+var comic_array:Array
 #漫画展示区
 var comic_show
   
@@ -27,8 +28,6 @@ var speed:float = 1
 var move_book
 var move_book_con
 
-func comic_array():
-	return comic.get(now_look.comic_name)
 
 func comic_name_to(comic_name):
 	return comic.get(comic_name)
@@ -57,7 +56,7 @@ func open_dir(dir_name:String):
 		print(pathArray[pathArray.size()-1] + "/" + dir_name)
 	if type == 0:
 		for i in move_book_con.get_child(0).get_children():
-			if i.name == "搜索":
+			if i.name == "搜索":		
 				continue
 			if i.comic_name != dir_name:
 				i.queue_free()
@@ -69,6 +68,7 @@ func open_dir(dir_name:String):
 				continue
 			if i.comic_name != dir_name:
 				i.queue_free()
+				
 		print("打开成功")	
 		comic_dir.list_dir_begin()
 		var file_name = comic_dir.get_next()
@@ -91,11 +91,14 @@ func open_dir(dir_name:String):
 				var add_book = book.instantiate()
 				#书籍名称归档
 				add_book.comic_name = file_name
+				if not comic.has(file_name):
+					comic[file_name] = 0
+				else :
+					add_book.now_page = comic.get(file_name)
 				add_book.set_head()
 				move_book_con.get_child(0).add_child(add_book)
 				#全局变量储存
-				var temp_array:Array
-				comic[file_name] = temp_array	
+					
 			file_name = comic_dir.get_next()
 		var add_book = book_con.instantiate()	
 		add_book.comic_name = pathArray[pathArray.size()-2]
